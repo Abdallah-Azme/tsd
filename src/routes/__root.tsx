@@ -1,8 +1,13 @@
-import { Outlet, createRootRoute } from "@tanstack/react-router";
+import { Outlet, createRootRoute, useLocation } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { TanStackDevtools } from "@tanstack/react-devtools";
+import { DirectionProvider } from "../components/ui/direction";
 import { IntlProvider } from "use-intl";
 import "../styles.css";
+
+import { Header } from "../features/layout/ui/Header";
+import { Footer } from "../features/layout/ui/Footer";
+import { CTASection } from "../features/layout/ui/CTASection";
 
 import en from "../messages/en.json";
 import ar from "../messages/ar.json";
@@ -20,14 +25,30 @@ export const Route = createRootRoute({
 });
 
 function RootComponent() {
-  const { lang } = Route.useSearch();
+  const { lang } = Route.useSearch() as { lang: "en" | "ar" };
   const isRtl = lang === "ar";
+  const direction = isRtl ? "rtl" : "ltr";
+  const location = useLocation();
+  const isContactPage = location.pathname === "/contact";
+
   return (
     <>
       <IntlProvider locale={lang} messages={messages[lang]}>
-        <div dir={isRtl ? "rtl" : "ltr"} lang={lang} className="min-h-screen">
-          <Outlet />
-        </div>
+        <DirectionProvider dir={direction}>
+          <div
+            dir={direction}
+            lang={lang}
+            className="min-h-screen flex flex-col"
+          >
+            <Header />
+            <div className="pt-20">
+              {/* Adjust padding top to account for fixed header */}
+              <Outlet />
+            </div>
+            {!isContactPage && <CTASection />}
+            <Footer />
+          </div>
+        </DirectionProvider>
         <TanStackDevtools
           config={{
             position: "bottom-right",

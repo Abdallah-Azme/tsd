@@ -1,102 +1,103 @@
-import { Link, createFileRoute } from '@tanstack/react-router'
-import { allBlogs } from 'content-collections'
-import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from '#/lib/site'
+import { createFileRoute } from "@tanstack/react-router";
+import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from "#/lib/site";
+import { BlogHeader } from "#/features/blog/ui/BlogHeader";
+import { BlogCard } from "#/features/blog/ui/BlogCard";
+import { blogService } from "#/features/blog/services/blogService";
 
-const canonical = `${SITE_URL}/blog`
-const pageTitle = `Blog | ${SITE_TITLE}`
+const canonical = `${SITE_URL}/blog`;
+const pageTitle = `Blog | ${SITE_TITLE}`;
 
-export const Route = createFileRoute('/blog/')({
+export const Route = createFileRoute("/blog/")({
   head: () => ({
-    links: [{ rel: 'canonical', href: canonical }],
+    links: [{ rel: "canonical", href: canonical }],
     meta: [
       { title: pageTitle },
-      { name: 'description', content: SITE_DESCRIPTION },
-      { property: 'og:image', content: `${SITE_URL}/images/lagoon-1.svg` },
+      { name: "description", content: SITE_DESCRIPTION },
+      { property: "og:image", content: `${SITE_URL}/images/lagoon-1.svg` },
     ],
   }),
-  component: BlogIndex,
-})
+  component: BlogPage,
+});
 
-function BlogIndex() {
-  const postsByDate = Array.from(
-    new Map(
-      [...allBlogs]
-        .sort(
-          (a, b) =>
-            new Date(b.pubDate).valueOf() - new Date(a.pubDate).valueOf(),
-        )
-        .map((post) => [post.slug, post]),
-    ).values(),
-  )
+function BlogPage() {
+  const posts = blogService.getPosts();
+  const firstRowPosts = posts.slice(0, 2);
+  const secondRowPosts = posts.slice(2, 5);
 
-  const featured = postsByDate[0]
-  const posts = postsByDate.slice(1)
   return (
-    <main className="page-wrap px-4 pb-8 pt-14">
-      <section className="mb-4">
-        <p className="island-kicker mb-2">Latest Dispatches</p>
-        <h1 className="display-title m-0 text-4xl font-bold tracking-tight text-[var(--sea-ink)] sm:text-5xl">
-          Blog
-        </h1>
-      </section>
+    <main className="min-h-screen bg-white pb-20">
+      <div className="container mx-auto px-4 md:px-8 max-w-7xl pt-24">
+        <BlogHeader
+          badgeText="Insights"
+          title="Our Blog"
+          description="Thoughts, stories, and perspectives shaping the digital world."
+        />
 
-      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <article className="island-shell rise-in rounded-2xl p-5 sm:p-6 lg:col-span-2">
-          {featured.heroImage ? (
-            <img
-              src={featured.heroImage}
-              alt=""
-              className="mb-4 h-44 w-full rounded-xl object-cover xl:h-60"
-            />
-          ) : null}
-          <h2 className="m-0 text-2xl font-semibold text-[var(--sea-ink)]">
-            <Link
-              to="/blog/$slug"
-              params={{ slug: featured.slug }}
-              className="no-underline"
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+          {firstRowPosts.map((post) => (
+            <BlogCard key={post.id} post={post} isLarge />
+          ))}
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+          {secondRowPosts.map((post) => (
+            <BlogCard key={post.id} post={post} />
+          ))}
+        </div>
+
+        {/* Pagination */}
+        <div className="flex justify-center items-center mt-12 gap-2">
+          <button className="w-8 h-8 rounded border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gray-50 transition-colors">
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 12 12"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              {featured.title}
-            </Link>
-          </h2>
-          <p className="mb-2 mt-3 text-base text-[var(--sea-ink-soft)]">
-            {featured.description}
-          </p>
-          <p className="m-0 text-xs text-[var(--sea-ink-soft)]">
-            {new Date(featured.pubDate).toLocaleDateString()}
-          </p>
-        </article>
-
-        {posts.map((post, index) => (
-          <article
-            key={post.slug}
-            className="island-shell rise-in rounded-2xl p-5 sm:last:col-span-2 lg:last:col-span-1"
-            style={{ animationDelay: `${index * 80 + 120}ms` }}
-          >
-            {post.heroImage ? (
-              <img
-                src={post.heroImage}
-                alt=""
-                className="mb-4 h-44 w-full rounded-xl object-cover"
+              <path
+                d="M7.5 9L4.5 6L7.5 3"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
-            ) : null}
-            <h2 className="m-0 text-2xl font-semibold text-[var(--sea-ink)]">
-              <Link
-                to="/blog/$slug"
-                params={{ slug: post.slug }}
-                className="no-underline"
-              >
-                {post.title}
-              </Link>
-            </h2>
-            <p className="mb-2 mt-2 text-sm text-[var(--sea-ink-soft)]">
-              {post.description}
-            </p>
-            <p className="m-0 text-xs text-[var(--sea-ink-soft)]">
-              {new Date(post.pubDate).toLocaleDateString()}
-            </p>
-          </article>
-        ))}
-      </section>
+            </svg>
+          </button>
+          <button className="w-8 h-8 rounded text-white bg-[#E77C00] flex items-center justify-center font-medium shadow-sm">
+            1
+          </button>
+          <button className="w-8 h-8 rounded border border-gray-200 flex items-center justify-center text-gray-700 hover:bg-gray-50 transition-colors">
+            2
+          </button>
+          <span className="w-8 h-8 flex items-center justify-center text-gray-500">
+            ...
+          </span>
+          <button className="w-8 h-8 rounded border border-gray-200 flex items-center justify-center text-gray-700 hover:bg-gray-50 transition-colors">
+            9
+          </button>
+          <button className="w-8 h-8 rounded border border-gray-200 flex items-center justify-center text-gray-700 hover:bg-gray-50 transition-colors">
+            10
+          </button>
+          <button className="w-8 h-8 rounded border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gray-50 transition-colors">
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 12 12"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4.5 9L7.5 6L4.5 3"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
     </main>
-  )
+  );
 }

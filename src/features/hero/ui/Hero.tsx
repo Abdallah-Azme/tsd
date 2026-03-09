@@ -1,0 +1,144 @@
+import { LucideSparkles } from "lucide-react";
+
+export const Hero = () => {
+  return (
+    <section className="relative flex min-h-[700px] w-full flex-col items-center justify-center overflow-hidden bg-[#F8FBFF] px-6 py-20 text-center select-none">
+      {/* Grid Background */}
+      <div
+        className="absolute inset-0 z-0 opacity-[0.4]"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, #E5EAF3 1px, transparent 1px),
+            linear-gradient(to bottom, #E5EAF3 1px, transparent 1px)
+          `,
+          backgroundSize: "40px 40px",
+          maskImage:
+            "radial-gradient(circle at center, black, transparent 80%)",
+        }}
+      />
+
+      {/* Floating Sparkles/Light Effects */}
+      <div className="pointer-events-none absolute left-1/4 top-1/4 h-64 w-64 rounded-full bg-blue-100/30 blur-[120px]" />
+      <div className="pointer-events-none absolute right-1/4 bottom-1/4 h-64 w-64 rounded-full bg-orange-100/30 blur-[120px]" />
+
+      {/* Top Badge */}
+      <div className="z-10 mb-8 flex items-center gap-2 rounded-full border border-[#FFD7A8]/30 bg-[#FF9D42]/10 px-5 py-2 shadow-[0_0_20px_rgba(255,157,66,0.15)] backdrop-blur-md transition-transform hover:scale-105 outline-none">
+        <div className="flex items-center gap-2 text-xs font-bold leading-none">
+          <LucideSparkles className="h-4 w-4 text-[#FF9D42]" />
+          <span className="bg-linear-to-r from-[#FF9D42] to-[#A0522D] bg-clip-text text-transparent">
+            Powering Your Growth
+          </span>
+        </div>
+      </div>
+
+      {/* Hero Content */}
+      <div className="z-10 flex max-w-5xl flex-col items-center">
+        <h1 className="mb-8 text-6xl font-black tracking-tight sm:text-8xl leading-[1.1]">
+          <span className="bg-linear-to-r from-[#FF8A00] to-[#FFB800] bg-clip-text text-transparent">
+            Innovative
+          </span>{" "}
+          <span className="text-[#1E3A8A]">Software</span> <br />
+          <span className="bg-linear-to-r from-[#FF8A00] to-[#FFB800] bg-clip-text text-transparent">
+            Solutions
+          </span>
+        </h1>
+
+        <p className="mb-12 max-w-2xl text-xl font-medium leading-relaxed text-[#5F6368]/80">
+          We deliver high-performance software, web apps, and digital systems
+          that boost productivity and enhance user experience. Trusted by
+          businesses for over 5 years.
+        </p>
+
+        <div className="flex flex-wrap items-center justify-center gap-6">
+          <button className="h-16 rounded-2xl bg-linear-to-r from-[#FF8A00] to-[#FFA800] px-10 text-lg font-bold text-white shadow-[0_10px_25px_-8px_rgba(255,138,0,0.6)] transition-all hover:scale-105 hover:shadow-[0_15px_30px_-10px_rgba(255,138,0,0.7)] active:scale-95">
+            Start Your Project
+          </button>
+          <button className="h-16 rounded-2xl border border-gray-100 bg-white px-10 text-lg font-bold text-[#FF8A00] shadow-[0_4px_12px_rgba(0,0,0,0.03)] transition-all hover:bg-gray-50 hover:scale-105 active:scale-95">
+            Explore Projects
+          </button>
+        </div>
+      </div>
+
+      {/* Floating Assets */}
+
+      {/* Code Icon - Top Left */}
+      <div className="absolute left-[15%] top-[15%] z-20 hidden rotate-[-15deg] animate-bounce-slow sm:block">
+        <img
+          src="/hero-code.png"
+          alt="Code Icon"
+          className="h-16 w-16 object-contain drop-shadow-xl mix-blend-multiply"
+        />
+      </div>
+
+      {/* Robot - Bottom Left */}
+      <div className="absolute left-[5%] bottom-[10%] z-20 hidden items-end gap-2 sm:flex">
+        <div className="relative">
+          <img
+            src="/hero-robot.png"
+            alt="Robot Mascot"
+            className="h-48 w-48 object-contain animate-float mix-blend-multiply"
+          />
+          {/* Chat Bubbles */}
+          <div className="absolute -right-4 top-0 translate-x-1/2 rounded-2xl bg-white p-3 shadow-lg border border-gray-100 animate-fade-in-up">
+            <div className="flex gap-1.5">
+              <div className="h-2 w-2 rounded-full bg-orange-400" />
+              <div className="h-2 w-2 rounded-full bg-orange-300" />
+              <div className="h-2 w-2 rounded-full bg-orange-200" />
+            </div>
+          </div>
+          <div className="absolute -left-12 bottom-1/4 rounded-2xl bg-white p-3 shadow-lg border border-gray-100 animate-fade-in-up delay-75">
+            <div className="flex gap-1.5">
+              <div className="h-2 w-2 rounded-full bg-blue-400" />
+              <div className="h-2 w-2 rounded-full bg-blue-300" />
+              <div className="h-2 w-2 rounded-full bg-blue-200" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Globe - Right Side */}
+      <div className="absolute right-[5%] top-1/2 z-20 hidden -translate-y-1/2 sm:block">
+        <img
+          src="/hero-globe.png"
+          alt="Globe"
+          className="h-[320px] w-[320px] object-contain drop-shadow-2xl animate-spin-slow mix-blend-multiply"
+        />
+      </div>
+
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+        @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-20px); }
+        }
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        @keyframes bounce-slow {
+          0%, 100% { transform: translateY(0) rotate(-15deg); }
+          50% { transform: translateY(-10px) rotate(-15deg); }
+        }
+        @keyframes fade-in-up {
+          from { opacity: 0; transform: translateY(10px) scale(0.9); }
+          to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+        .animate-spin-slow {
+          animation: spin-slow 60s linear infinite;
+        }
+        .animate-bounce-slow {
+          animation: bounce-slow 4s ease-in-out infinite;
+        }
+        .animate-fade-in-up {
+          animation: fade-in-up 0.5s ease-out forwards;
+        }
+      `,
+        }}
+      />
+    </section>
+  );
+};
