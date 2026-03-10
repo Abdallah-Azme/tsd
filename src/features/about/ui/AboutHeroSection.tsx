@@ -3,7 +3,7 @@ import { AboutStats } from "./AboutStats";
 
 export const AboutHeroSection = () => {
   return (
-    <section className="py-24 px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
+    <section className="py-24 container mx-auto px-4 overflow-hidden">
       <SectionHeader
         badge="About us"
         title="We Build Software"

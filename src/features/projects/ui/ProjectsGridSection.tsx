@@ -3,9 +3,11 @@ import { useProjects } from "../hooks/useProjects";
 import { Tabs, TabsList, TabsTrigger } from "#/components/ui/tabs";
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "#/lib/utils";
+import { useTranslations } from "use-intl";
 
 export const ProjectsGridSection = () => {
-  const { lang, isRtl, projects } = useProjects();
+  const t = useTranslations("Projects");
+  const { isRtl, projects } = useProjects();
   const [activeCategory, setActiveCategory] = useState("All");
 
   const categories = ["All", "Mobile Apps", "Websites", "Systems"];
@@ -17,20 +19,19 @@ export const ProjectsGridSection = () => {
 
   return (
     <section className="py-24 bg-[#fafbfc]" dir={isRtl ? "rtl" : "ltr"}>
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="container mx-auto px-4">
         <div className="flex flex-col items-center text-center space-y-4 mb-4">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-100 border border-gray-200 shadow-sm">
             <div className="w-2 h-2 rounded-full bg-gray-400" />
             <span className="text-[10px] font-bold text-gray-600 uppercase tracking-wider">
-              Our Work
+              {t("badge")}
             </span>
           </div>
           <h2 className="text-4xl md:text-[42px] font-bold text-[#1e3a5a]">
-            Projects We're Proud Of
+            {t("title")}
           </h2>
           <p className="text-gray-400 max-w-2xl text-sm md:text-base">
-            Real solutions. Real impact. Real results. Projects that make a real
-            difference
+            {t("description")}
           </p>
         </div>
 
@@ -49,7 +50,7 @@ export const ProjectsGridSection = () => {
                   "text-white/80 hover:text-white data-[state=active]:bg-[#f18c22] data-[state=active]:text-white data-[state=active]:shadow-md border-transparent",
                 )}
               >
-                {category}
+                {t(`categories.${category}` as any) || category}
               </TabsTrigger>
             ))}
           </TabsList>
@@ -95,7 +96,7 @@ export const ProjectsGridSection = () => {
                         "bg-[#f18c22] text-white hover:bg-[#d87a1a] shadow-lg shadow-[#f18c22]/30",
                       )}
                     >
-                      Visit Website
+                      {t("visitWebsite")}
                       <ArrowUpRight className="w-4 h-4" />
                     </a>
                   </div>

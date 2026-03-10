@@ -1,6 +1,8 @@
 import { Phone, Mail, MapPin } from "lucide-react";
+import { useTranslations } from "use-intl";
 
 export const ContactSection = () => {
+  const t = useTranslations("Contact");
   return (
     <section className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#F4F7FC] px-6 py-20 lg:py-32">
       {/* Background Grid */}
@@ -21,7 +23,7 @@ export const ContactSection = () => {
       <div className="pointer-events-none absolute left-0 top-0 h-[800px] w-[800px] -translate-x-1/3 -translate-y-1/3 rounded-full bg-[#FFE8D6]/70 blur-[120px]" />
       <div className="pointer-events-none absolute right-0 bottom-0 h-[800px] w-[800px] translate-x-1/3 translate-y-1/3 rounded-full bg-[#E5F0FF]/70 blur-[120px]" />
 
-      <div className="z-10 w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center px-4 lg:px-8">
+      <div className="z-10 w-full container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
         {/* Left Content */}
         <div className="flex flex-col items-start text-left">
           {/* Badge */}
@@ -31,22 +33,18 @@ export const ContactSection = () => {
               <div className="absolute top-[15%] left-[15%] w-[30%] h-[30%] bg-white/50 rounded-full blur-[0.5px]"></div>
             </div>
             <span className="text-sm font-semibold text-white tracking-wide pr-1 drop-shadow-[0_1px_1px_rgba(0,0,0,0.1)]">
-              Contact Us
+              {t("badge")}
             </span>
           </div>
 
           <h2 className="text-4xl lg:text-[50px] font-extrabold tracking-tight leading-[1.2] mb-6">
-            <span className="text-[#111827]">Get in Touch With TSD</span>
+            <span className="text-[#111827]">{t("titlePart1")}</span>
             <br />
-            <span className="text-[#0a2540]">Today</span>
+            <span className="text-[#0a2540]">{t("titlePart2")}</span>
           </h2>
 
-          <p className="text-[#6B7280] text-[17px] font-medium leading-[1.6] max-w-[420px] mb-12">
-            Ready to turn your ideas into powerful digital solutions?
-            <br />
-            <br />
-            Whether you need a website, mobile app, or a custom software system,
-            TSD is here to help you build, scale, and succeed.
+          <p className="text-[#6B7280] text-[17px] font-medium leading-[1.6] max-w-[420px] mb-12 whitespace-pre-line">
+            {t("description")}
           </p>
 
           <div className="flex flex-col gap-5">
@@ -83,43 +81,43 @@ export const ContactSection = () => {
             <form className="flex flex-col gap-[18px]">
               <div className="flex flex-col gap-1.5">
                 <label className="text-[14px] font-semibold text-[#111827] ml-1">
-                  Full Name
+                  {t("fullName")}
                 </label>
                 <input
                   type="text"
-                  placeholder="Full Name"
+                  placeholder={t("fullName")}
                   className="w-full px-5 py-[14px] bg-[#F9FAFB] border border-gray-100 rounded-xl text-[14px] outline-none focus:bg-white focus:border-[#FF8A00] focus:ring-1 focus:ring-[#FF8A00] transition-all placeholder:text-gray-400"
                 />
               </div>
 
               <div className="flex flex-col gap-1.5">
                 <label className="text-[14px] font-semibold text-[#111827] ml-1">
-                  Phone Number (Optional)
+                  {t("phoneNumber")}
                 </label>
                 <input
                   type="text"
-                  placeholder="Phone Number"
+                  placeholder={t("phonePlaceholder")}
                   className="w-full px-5 py-[14px] bg-white border border-[#FF8A00] rounded-xl text-[14px] outline-none shadow-[0_0_0_2px_rgba(255,138,0,0.1)] focus:border-[#FF8A00] focus:ring-1 focus:ring-[#FF8A00] transition-all placeholder:text-gray-400"
                 />
               </div>
 
               <div className="flex flex-col gap-1.5">
                 <label className="text-[14px] font-semibold text-[#111827] ml-1">
-                  Email Address
+                  {t("emailAddress")}
                 </label>
                 <input
                   type="email"
-                  placeholder="Email Address"
+                  placeholder={t("emailAddress")}
                   className="w-full px-5 py-[14px] bg-[#F9FAFB] border border-gray-100 rounded-xl text-[14px] outline-none focus:bg-white focus:border-[#FF8A00] focus:ring-1 focus:ring-[#FF8A00] transition-all placeholder:text-gray-400"
                 />
               </div>
 
               <div className="flex flex-col gap-1.5">
                 <label className="text-[14px] font-semibold text-[#111827] ml-1">
-                  Message
+                  {t("message")}
                 </label>
                 <textarea
-                  placeholder="Message"
+                  placeholder={t("message")}
                   rows={4}
                   className="w-full px-5 py-[14px] bg-[#F9FAFB] border border-gray-100 rounded-xl text-[14px] outline-none focus:bg-white focus:border-[#FF8A00] focus:ring-1 focus:ring-[#FF8A00] transition-all resize-none placeholder:text-gray-400"
                 />
@@ -130,7 +128,7 @@ export const ContactSection = () => {
                   type="button"
                   className="py-3 px-10 rounded-xl bg-linear-to-r from-[#FF8A00] to-[#FFA800] text-white font-bold text-[15px] shadow-[0_8px_16px_-6px_rgba(255,138,0,0.4)] hover:scale-[1.02] active:scale-[0.98] transition-all"
                 >
-                  Submit
+                  {t("submit")}
                 </button>
               </div>
             </form>

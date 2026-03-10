@@ -2,48 +2,44 @@ import { SectionHeader } from "@/components/shared/SectionHeader";
 import { cn } from "@/lib/utils";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { useRef } from "react";
-
-const timelineSteps = [
-  {
-    title: "Requirement Gathering",
-    description:
-      "We start by understanding your business goals, challenges, and expectations to define a clear project vision from day one.",
-    icon: "📋",
-  },
-  {
-    title: "Research & Analysis",
-    description:
-      "Our team analyzes your requirements, target audience, and technical needs to build a solid foundation for the solution.",
-    icon: "🔍",
-  },
-  {
-    title: "Design & Planning",
-    description:
-      "User interfaces and user experience are designed in a professional manner that aligns with the brand identity, ensuring ease of use and visual appeal.",
-    icon: "🎨",
-  },
-  {
-    title: "Development & Programming",
-    description:
-      "The development team begins implementing the project using the latest technologies, while ensuring high performance and adherence to security and quality standards.",
-    icon: "💻",
-  },
-  {
-    title: "Testing & Delivery",
-    description:
-      "We conduct a thorough review of the platform or application to ensure it operates efficiently and is free of any errors, then deliver it ready for official launch and use.",
-    icon: "✅",
-  },
-  {
-    title: "Technical Support",
-    description:
-      "We provide continuous support after launch, including monitoring, updates, and resolving any technical issues to ensure stable performance and ongoing success.",
-    icon: "🛠️",
-  },
-];
+import { useTranslations } from "use-intl";
 
 export const ProcessSection = () => {
+  const t = useTranslations("Process");
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const timelineSteps = [
+    {
+      title: t("step1Title"),
+      description: t("step1Desc"),
+      icon: "📋",
+    },
+    {
+      title: t("step2Title"),
+      description: t("step2Desc"),
+      icon: "🔍",
+    },
+    {
+      title: t("step3Title"),
+      description: t("step3Desc"),
+      icon: "🎨",
+    },
+    {
+      title: t("step4Title"),
+      description: t("step4Desc"),
+      icon: "💻",
+    },
+    {
+      title: t("step5Title"),
+      description: t("step5Desc"),
+      icon: "✅",
+    },
+    {
+      title: t("step6Title"),
+      description: t("step6Desc"),
+      icon: "🛠️",
+    },
+  ];
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -58,7 +54,7 @@ export const ProcessSection = () => {
 
   return (
     <section
-      className="py-24 px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden relative"
+      className="py-24 container mx-auto px-4 overflow-hidden relative"
       ref={containerRef}
     >
       {/* Background Gradients & Grid */}
@@ -66,9 +62,9 @@ export const ProcessSection = () => {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[40px_40px] mask-[linear-gradient(to_bottom,#000_10%,transparent_100%)] -z-20" />
 
       <SectionHeader
-        badge="Our Process"
-        title="From Vision to Execution"
-        description="Our software development process is designed to ensure exceptional quality, efficient timelines, and clear communication."
+        badge={t("badge")}
+        title={t("title")}
+        description={t("description")}
         className="mb-24"
       />
 

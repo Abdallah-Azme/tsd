@@ -1,6 +1,98 @@
 {
-  "HomePage": {
-    "title": "Welcome",
-    "about": "About Us"
+  "Navigation": {
+    "home": "Home",
+    "about": "About Us",
+    "projects": "Projects",
+    "blog": "Blog",
+    "contact": "Contact Us"
+  },
+  "Footer": {
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dictum aliquet accumsan porta lectus ridiculus in mattis. Netus sodales in volutpat ullamcorper amet adipiscing fermentum.",
+    "links": "Links",
+    "contactUs": "Contact Us",
+    "address": "15 El Tahrir St, Cairo, Egypt",
+    "company": "Software Company",
+    "rights": "All Rights Reserved",
+    "terms": "Terms Of Service",
+    "faqs": "FAQs",
+    "privacy": "Privacy Policy"
+  },
+  "Contact": {
+    "badge": "Contact Us",
+    "titlePart1": "Get in Touch With TSD",
+    "titlePart2": "Today",
+    "description": "Ready to turn your ideas into powerful digital solutions?\n\nWhether you need a website, mobile app, or a custom software system, TSD is here to help you build, scale, and succeed.",
+    "fullName": "Full Name",
+    "phoneNumber": "Phone Number (Optional)",
+    "phonePlaceholder": "Phone Number",
+    "emailAddress": "Email Address",
+    "message": "Message",
+    "submit": "Submit"
+  },
+  "Hero": {
+    "badge": "Powering Your Growth",
+    "title1": "Innovative",
+    "title2": "Software",
+    "title3": "Solutions",
+    "description": "We deliver high-performance software, web apps, and digital systems that boost productivity and enhance user experience. Trusted by businesses for over 5 years.",
+    "startProject": "Start Your Project",
+    "exploreProjects": "Explore Projects"
+  },
+  "About": {
+    "badge": "About us",
+    "title": "We Build Software",
+    "description": "TSD helps businesses grow with scalable digital products. We transform complex problems into elegant, user-centric software solutions.",
+    "getStarted": "Get Started",
+    "subtitlePart1": "Smart Solutions.",
+    "subtitlePart2": "Real Scale.",
+    "para1": "We create intelligent software solutions that empower businesses to operate more efficiently, cut costs, and drive faster digital growth using modern, tailored technologies.",
+    "para2": "Our expert developers build robust architectures that scale with your business needs, ensuring your digital product remains competitive in a rapidly evolving market.",
+    "exploreMore": "Explore more"
+  },
+  "Services": {
+    "badge": "What We Do",
+    "title": "Our Software Services",
+    "description": "Custom solutions designed to meet your business needs."
+  },
+  "Projects": {
+    "badge": "Our Work",
+    "title": "Projects We're Proud Of",
+    "description": "Real solutions. Real impact. Real results. Projects that make a real difference",
+    "viewMore": "View More",
+    "learnMore": "Learn More",
+    "visitWebsite": "Visit Website",
+    "categories": {
+      "All": "All",
+      "Mobile Apps": "Mobile Apps",
+      "Websites": "Websites",
+      "Systems": "Systems"
+    }
+  },
+  "Blog": {
+    "badge": "Insights",
+    "title": "Our Blog",
+    "description": "Thoughts, stories, and perspectives shaping the digital world."
+  },
+  "Process": {
+    "badge": "Our Process",
+    "title": "From Vision to Execution",
+    "description": "Our software development process is designed to ensure exceptional quality, efficient timelines, and clear communication.",
+    "step1Title": "Requirement Gathering",
+    "step1Desc": "We start by understanding your business goals, challenges, and expectations to define a clear project vision from day one.",
+    "step2Title": "Research & Analysis",
+    "step2Desc": "Our team analyzes your requirements, target audience, and technical needs to build a solid foundation for the solution.",
+    "step3Title": "Design & Planning",
+    "step3Desc": "User interfaces and user experience are designed in a professional manner that aligns with the brand identity, ensuring ease of use and visual appeal.",
+    "step4Title": "Development & Programming",
+    "step4Desc": "The development team begins implementing the project using the latest technologies, while ensuring high performance and adherence to security and quality standards.",
+    "step5Title": "Testing & Delivery",
+    "step5Desc": "We conduct a thorough review of the platform or application to ensure it operates efficiently and is free of any errors, then deliver it ready for official launch and use.",
+    "step6Title": "Technical Support",
+    "step6Desc": "We provide continuous support after launch, including monitoring, updates, and resolving any technical issues to ensure stable performance and ongoing success."
+  },
+  "Team": {
+    "badge": "Meet the Team",
+    "title": "The People Behind TSD",
+    "description": "A skilled team of developers and tech experts driving every project forward."
   }
 }

@@ -26,7 +26,7 @@ function BlogPage() {
 
   return (
     <main className="min-h-screen bg-white pb-20">
-      <div className="container mx-auto px-4 md:px-8 max-w-7xl pt-24">
+      <div className="container mx-auto px-4 pt-24">
         <BlogHeader
           badgeText="Insights"
           title="Our Blog"

@@ -49,7 +49,7 @@ function BlogPost() {
 
   return (
     <main className="w-full flex-1">
-      <article className="max-w-7xl mx-auto px-4 md:px-8 py-12 md:py-20">
+      <article className="container mx-auto px-4 py-12 md:py-20">
         {/* Cover Image */}
         {post.heroImage ? (
           <img
@@ -90,7 +90,7 @@ function BlogPost() {
       </article>
 
       {/* Other Blogs Section */}
-      <section className="max-w-7xl mx-auto px-4 md:px-8 pb-20">
+      <section className="container mx-auto px-4 pb-20">
         <h2 className="text-3xl font-bold text-[#111827] mb-8">Other Blogs</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {otherBlogs.map((blog) => (

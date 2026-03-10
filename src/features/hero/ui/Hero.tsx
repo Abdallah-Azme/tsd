@@ -1,6 +1,8 @@
 import { LucideSparkles } from "lucide-react";
+import { useTranslations } from "use-intl";
 
 export const Hero = () => {
+  const t = useTranslations("Hero");
   return (
     <section className="relative flex min-h-[700px] w-full flex-col items-center justify-center overflow-hidden bg-[#F8FBFF] px-6 py-20 text-center select-none">
       {/* Grid Background */}
@@ -22,39 +24,35 @@ export const Hero = () => {
       <div className="pointer-events-none absolute right-1/4 bottom-1/4 h-64 w-64 rounded-full bg-orange-100/30 blur-[120px]" />
 
       {/* Top Badge */}
-      <div className="z-10 mb-8 flex items-center gap-2 rounded-full border border-[#FFD7A8]/30 bg-[#FF9D42]/10 px-5 py-2 shadow-[0_0_20px_rgba(255,157,66,0.15)] backdrop-blur-md transition-transform hover:scale-105 outline-none">
-        <div className="flex items-center gap-2 text-xs font-bold leading-none">
-          <LucideSparkles className="h-4 w-4 text-[#FF9D42]" />
-          <span className="bg-linear-to-r from-[#FF9D42] to-[#A0522D] bg-clip-text text-transparent">
-            Powering Your Growth
-          </span>
+      <div className="z-10 mb-8 flex items-center gap-2 rounded-full border border-white/20 bg-linear-to-r from-[#a6988c]/90 to-[#8c7b6d]/90 px-6 py-2.5 shadow-[0_8px_16px_rgba(0,0,0,0.1)] backdrop-blur-md transition-transform hover:scale-105 outline-none">
+        <div className="flex items-center gap-2 text-sm font-semibold leading-none text-white">
+          <LucideSparkles className="h-4 w-4 text-white" />
+          <span>{t("badge")}</span>
         </div>
       </div>
 
       {/* Hero Content */}
       <div className="z-10 flex max-w-5xl flex-col items-center">
-        <h1 className="mb-8 text-6xl font-black tracking-tight sm:text-8xl leading-[1.1]">
-          <span className="bg-linear-to-r from-[#FF8A00] to-[#FFB800] bg-clip-text text-transparent">
-            Innovative
+        <h1 className="mb-8 text-5xl font-black tracking-tight sm:text-[80px] leading-[1.1]">
+          <span className="bg-linear-to-r from-[#FF8A00] to-[#8c8c8c] bg-clip-text text-transparent">
+            {t("title1")}
           </span>{" "}
-          <span className="text-[#1E3A8A]">Software</span> <br />
-          <span className="bg-linear-to-r from-[#FF8A00] to-[#FFB800] bg-clip-text text-transparent">
-            Solutions
+          <span className="text-[#1E3A8A]">{t("title2")}</span> <br />
+          <span className="bg-linear-to-r from-[#FF8A00] to-[#1E3A8A] bg-clip-text text-transparent">
+            {t("title3")}
           </span>
         </h1>
 
         <p className="mb-12 max-w-2xl text-xl font-medium leading-relaxed text-[#5F6368]/80">
-          We deliver high-performance software, web apps, and digital systems
-          that boost productivity and enhance user experience. Trusted by
-          businesses for over 5 years.
+          {t("description")}
         </p>
 
-        <div className="flex flex-wrap items-center justify-center gap-6">
-          <button className="h-16 rounded-2xl bg-linear-to-r from-[#FF8A00] to-[#FFA800] px-10 text-lg font-bold text-white shadow-[0_10px_25px_-8px_rgba(255,138,0,0.6)] transition-all hover:scale-105 hover:shadow-[0_15px_30px_-10px_rgba(255,138,0,0.7)] active:scale-95">
-            Start Your Project
+        <div className="flex flex-wrap items-center justify-center gap-6 mt-2">
+          <button className="h-14 rounded-2xl bg-[#FF8A00] px-8 text-base font-bold text-white shadow-[0_8px_20px_rgba(255,138,0,0.3)] transition-all hover:scale-105 hover:bg-[#F08000] active:scale-95">
+            {t("startProject")}
           </button>
-          <button className="h-16 rounded-2xl border border-gray-100 bg-white px-10 text-lg font-bold text-[#FF8A00] shadow-[0_4px_12px_rgba(0,0,0,0.03)] transition-all hover:bg-gray-50 hover:scale-105 active:scale-95">
-            Explore Projects
+          <button className="h-14 rounded-2xl border border-gray-200 bg-white px-8 text-base font-bold text-[#FF8A00] shadow-[0_4px_12px_rgba(0,0,0,0.05)] transition-all hover:bg-gray-50 hover:scale-105 active:scale-95">
+            {t("exploreProjects")}
           </button>
         </div>
       </div>

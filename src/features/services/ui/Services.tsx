@@ -1,78 +1,69 @@
+import { useState } from "react";
 import { SectionHeader } from "@/components/shared/SectionHeader";
-import { LucideArrowLeft, LucideArrowRight } from "lucide-react";
 import { services } from "../services/servicesData";
-import { useServicesCarousel } from "../hooks/useServicesCarousel";
 import { ServiceCard } from "./ServiceCard";
+import { useTranslations } from "use-intl";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import AutoScroll from "embla-carousel-auto-scroll";
 
 export const Services = () => {
-  const { emblaRef, selectedIndex, scrollPrev, scrollNext } =
-    useServicesCarousel();
+  const t = useTranslations("Services");
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   return (
     <section className="w-full bg-white py-24 px-6 overflow-hidden">
-      <div className="mx-auto max-w-7xl">
+      <div className="container mx-auto px-4">
         <SectionHeader
-          badge="What We Do"
-          title="Our Software Services"
-          description="Custom solutions designed to meet your business needs."
+          badge={t("badge")}
+          title={t("title")}
+          description={t("description")}
           className="mb-16"
         />
       </div>
 
-      {/* Carousel Container */}
-      <div className="relative w-full">
-        <div className="overflow-visible" ref={emblaRef}>
-          <div className="flex gap-8 px-4 py-10">
+      <div className="container mx-auto px-4 relative">
+        <Carousel
+          opts={{
+            loop: true,
+            align: "center",
+            containScroll: false,
+          }}
+          plugins={[
+            AutoScroll({
+              playOnInit: true,
+              stopOnInteraction: false,
+              speed: 1,
+            }),
+          ]}
+          setApi={(api) => {
+            if (!api) return;
+            setSelectedIndex(api.selectedScrollSnap());
+            api.on("select", () => {
+              setSelectedIndex(api.selectedScrollSnap());
+            });
+          }}
+          className="w-full"
+        >
+          <CarouselContent className="py-10">
             {services.map((service, index) => (
-              <div key={service.id} className="flex-[0_0_auto] min-w-0">
+              <CarouselItem key={service.id} className="basis-auto pl-8">
                 <ServiceCard
                   service={service}
                   isActive={index === selectedIndex % services.length}
                 />
-              </div>
+              </CarouselItem>
             ))}
-          </div>
-        </div>
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
       </div>
-
-      {/* Navigation Controls */}
-      <div className="mx-auto mt-12 flex max-w-7xl items-center justify-end gap-10">
-        <button
-          onClick={scrollPrev}
-          className="group relative flex items-center"
-          aria-label="Previous slide"
-        >
-          <div className="h-[2px] w-20 bg-gray-200 transition-colors group-hover:bg-gray-400" />
-          <LucideArrowLeft className="absolute -left-1 h-5 w-5 text-gray-300 transition-colors group-hover:text-gray-500" />
-        </button>
-
-        <button
-          onClick={scrollNext}
-          className="group relative flex items-center"
-          aria-label="Next slide"
-        >
-          <div className="h-[2px] w-32 bg-[#FF9D42] transition-transform group-hover:scale-x-110" />
-          <LucideArrowRight className="absolute -right-1 h-6 w-6 text-[#FF9D42] transition-transform group-hover:translate-x-1" />
-        </button>
-      </div>
-
-      {/* Custom Styles for Embla and Arrows */}
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-        .embla__viewport {
-          overflow: hidden;
-        }
-        .embla__container {
-          display: flex;
-        }
-        .embla__slide {
-          flex: 0 0 auto;
-          min-width: 0;
-        }
-      `,
-        }}
-      />
     </section>
   );
 };
