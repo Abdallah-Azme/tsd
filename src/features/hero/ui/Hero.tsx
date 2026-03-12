@@ -1,10 +1,12 @@
+import { PartnersCarousel } from "#/features/partners/ui/PartnersCarousel";
 import { LucideSparkles } from "lucide-react";
 import { useTranslations } from "use-intl";
+import { GlassButton } from "#/components/ui/GlassButton";
 
 export const Hero = () => {
   const t = useTranslations("Hero");
   return (
-    <section className="relative flex min-h-[700px] w-full flex-col items-center justify-center overflow-hidden bg-[#F8FBFF] px-6 py-20 text-center select-none">
+    <section className="relative flex min-h-[700px] w-full flex-col items-center justify-center overflow-hidden bg-[#F8FBFF] px-6 py-5 text-center select-none">
       {/* Grid Background */}
       <div
         className="absolute inset-0 z-0 opacity-[0.4]"
@@ -47,96 +49,53 @@ export const Hero = () => {
           {t("description")}
         </p>
 
-        <div className="flex flex-wrap items-center justify-center gap-6 mt-2">
-          <button className="h-14 rounded-2xl bg-[#FF8A00] px-8 text-base font-bold text-white shadow-[0_8px_20px_rgba(255,138,0,0.3)] transition-all hover:scale-105 hover:bg-[#F08000] active:scale-95">
-            {t("startProject")}
-          </button>
-          <button className="h-14 rounded-2xl border border-gray-200 bg-white px-8 text-base font-bold text-[#FF8A00] shadow-[0_4px_12px_rgba(0,0,0,0.05)] transition-all hover:bg-gray-50 hover:scale-105 active:scale-95">
-            {t("exploreProjects")}
-          </button>
+        <div className="flex flex-wrap items-center justify-center gap-6 mt-2 relative z-10">
+          <GlassButton variant="primary">{t("startProject")}</GlassButton>
+          <GlassButton variant="secondary">{t("exploreProjects")}</GlassButton>
         </div>
       </div>
 
       {/* Floating Assets */}
 
       {/* Code Icon - Top Left */}
-      <div className="absolute left-[15%] top-[15%] z-20 hidden rotate-[-15deg] animate-bounce-slow sm:block">
+      <div className="absolute left-[15%] top-[15%] z-20 hidden  animate-bounce-slow sm:block">
         <img
-          src="/hero-code.png"
+          src="/home-page/code.png"
           alt="Code Icon"
           className="h-16 w-16 object-contain drop-shadow-xl mix-blend-multiply"
         />
       </div>
 
       {/* Robot - Bottom Left */}
-      <div className="absolute left-[5%] bottom-[10%] z-20 hidden items-end gap-2 sm:flex">
+      <div className="absolute left-[5%] bottom-[20%] z-20 hidden items-end gap-2 sm:flex">
         <div className="relative">
           <img
-            src="/hero-robot.png"
+            src="/home-page/robot.png"
             alt="Robot Mascot"
             className="h-48 w-48 object-contain animate-float mix-blend-multiply"
           />
-          {/* Chat Bubbles */}
-          <div className="absolute -right-4 top-0 translate-x-1/2 rounded-2xl bg-white p-3 shadow-lg border border-gray-100 animate-fade-in-up">
-            <div className="flex gap-1.5">
-              <div className="h-2 w-2 rounded-full bg-orange-400" />
-              <div className="h-2 w-2 rounded-full bg-orange-300" />
-              <div className="h-2 w-2 rounded-full bg-orange-200" />
-            </div>
-          </div>
-          <div className="absolute -left-12 bottom-1/4 rounded-2xl bg-white p-3 shadow-lg border border-gray-100 animate-fade-in-up delay-75">
-            <div className="flex gap-1.5">
-              <div className="h-2 w-2 rounded-full bg-blue-400" />
-              <div className="h-2 w-2 rounded-full bg-blue-300" />
-              <div className="h-2 w-2 rounded-full bg-blue-200" />
-            </div>
-          </div>
         </div>
       </div>
 
       {/* Globe - Right Side */}
       <div className="absolute right-[5%] top-1/2 z-20 hidden -translate-y-1/2 sm:block">
         <img
-          src="/hero-globe.png"
+          src="/home-page/earth.png"
           alt="Globe"
-          className="h-[320px] w-[320px] object-contain drop-shadow-2xl animate-spin-slow mix-blend-multiply"
+          className="h-[320px] w-[320px] object-contain drop-shadow-2xl animate-float mix-blend-multiply"
         />
       </div>
 
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-        @keyframes float {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-20px); }
-        }
-        @keyframes spin-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        @keyframes bounce-slow {
-          0%, 100% { transform: translateY(0) rotate(-15deg); }
-          50% { transform: translateY(-10px) rotate(-15deg); }
-        }
-        @keyframes fade-in-up {
-          from { opacity: 0; transform: translateY(10px) scale(0.9); }
-          to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-        .animate-spin-slow {
-          animation: spin-slow 60s linear infinite;
-        }
-        .animate-bounce-slow {
-          animation: bounce-slow 4s ease-in-out infinite;
-        }
-        .animate-fade-in-up {
-          animation: fade-in-up 0.5s ease-out forwards;
-        }
-      `,
-        }}
-      />
+      <PartnersCarousel />
+
+      {/* Bottom Background Pattern */}
+      <div className="absolute bottom-0 left-0 w-full z-0 pointer-events-none opacity-[0.4]">
+        <img
+          src="/home-page/triangles.png"
+          alt="Pattern"
+          className="w-full h-auto object-cover"
+        />
+      </div>
     </section>
   );
 };

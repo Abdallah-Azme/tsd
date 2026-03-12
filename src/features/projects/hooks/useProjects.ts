@@ -12,7 +12,7 @@ export const useProjects = () => {
       title: "DIWander",
       description:
         "Discover and book your next journey with ease. DIWander helps you find the best flights, destinations, and travel experiences — all in one seamless platform.",
-      image: "/project_diwander.png",
+      image: "/home-page/project-img.png",
       link: "https://diwander.com",
       category: "Websites",
     },
@@ -21,7 +21,7 @@ export const useProjects = () => {
       title: "Gabrun",
       description:
         "Fast, secure, and modern payment solutions designed to simplify business transactions and help companies manage payments with confidence.",
-      image: "/project_gabrun.png",
+      image: "/home-page/project-img.png",
       link: "https://gabrun.com",
       featured: true,
       category: "Mobile Apps",
@@ -31,7 +31,7 @@ export const useProjects = () => {
       title: "DIWander",
       description:
         "Discover and book your next journey with ease. DIWander helps you find the best flights, destinations, and travel experiences — all in one seamless platform.",
-      image: "/project_diwander.png",
+      image: "/home-page/project-img.png",
       link: "https://diwander.com",
       category: "Systems",
     },
@@ -40,7 +40,7 @@ export const useProjects = () => {
       title: "Gabrun",
       description:
         "Fast, secure, and modern payment solutions designed to simplify business transactions and help companies manage payments with confidence.",
-      image: "/project_gabrun.png",
+      image: "/home-page/project-img.png",
       link: "https://gabrun.com",
       featured: true,
       category: "Mobile Apps",

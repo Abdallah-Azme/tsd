@@ -12,7 +12,7 @@ export const TeamCard: React.FC<TeamCardProps> = ({ member }) => {
     <motion.div
       initial="initial"
       whileHover="hover"
-      className="relative w-full h-[450px] rounded-[32px] overflow-hidden cursor-pointer group bg-[#E2E8F0]"
+      className="relative w-full h-[450px] rounded-[32px] overflow-hidden cursor-pointer group bg-[#E2E8F0] shadow-sm hover:shadow-[0_20px_40px_-15px_rgba(181,101,0,0.3)] transition-shadow duration-500"
     >
       {/* Dynamic Background Gradient */}
       <motion.div
@@ -21,8 +21,16 @@ export const TeamCard: React.FC<TeamCardProps> = ({ member }) => {
           hover: { opacity: 1 },
         }}
         transition={{ duration: 1.5, ease: "easeInOut" }}
-        className="absolute inset-0 bg-linear-to-br from-[#b4712e] via-[#2F3E53] to-[#041B33]"
-      />
+        className="absolute inset-0 bg-gradient-to-br from-[#B56500] via-[#2F3E53] to-[#0F172A] overflow-hidden"
+      >
+        {/* Noise Overlay */}
+        <div 
+          className="absolute inset-0 opacity-[0.08] mix-blend-overlay pointer-events-none"
+          style={{ 
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` 
+          }}
+        />
+      </motion.div>
 
       {/* Profile Image Animation */}
       <motion.div
@@ -78,14 +86,14 @@ export const TeamCard: React.FC<TeamCardProps> = ({ member }) => {
               initial: { fontSize: "24px", color: "#FFFFFF" },
               hover: { fontSize: "24px", color: "#FFFFFF" },
             }}
-            className="font-bold"
+            className="font-bold tracking-tight"
           >
             {member.name}
           </motion.h3>
           <motion.p
             variants={{
-              initial: { fontSize: "14px", color: "#D1D5DB" },
-              hover: { fontSize: "14px", color: "#dfa56b" },
+              initial: { fontSize: "14px", color: "#E2E8F0" },
+              hover: { fontSize: "14px", color: "#FDBA74" },
             }}
             className="font-medium"
           >
@@ -123,30 +131,30 @@ export const TeamCard: React.FC<TeamCardProps> = ({ member }) => {
         >
           {member.socials.facebook && (
             <Facebook
-              className="w-[18px] h-[18px] text-[#06b6d4] hover:scale-110 transition-transform"
+              className="w-[18px] h-[18px] text-[#38BDF8] hover:scale-110 transition-transform"
               strokeWidth={2}
             />
           )}
           {member.socials.instagram && (
             <Instagram
-              className="w-[18px] h-[18px] text-[#06b6d4] hover:scale-110 transition-transform"
+              className="w-[18px] h-[18px] text-[#38BDF8] hover:scale-110 transition-transform"
               strokeWidth={2}
             />
           )}
           {member.socials.x && (
             <Twitter
-              className="w-[18px] h-[18px] text-[#06b6d4] hover:scale-110 transition-transform"
+              className="w-[18px] h-[18px] text-[#38BDF8] hover:scale-110 transition-transform"
               strokeWidth={2}
             />
           )}
           {member.socials.behance && (
-            <span className="font-bold text-[#06b6d4] hover:scale-110 transition-transform text-sm">
+            <span className="font-bold text-[#38BDF8] hover:scale-110 transition-transform text-sm">
               Bē
             </span>
           )}
           {member.socials.linkedin && (
             <Linkedin
-              className="w-[18px] h-[18px] text-[#06b6d4] hover:scale-110 transition-transform"
+              className="w-[18px] h-[18px] text-[#38BDF8] hover:scale-110 transition-transform"
               strokeWidth={2}
             />
           )}

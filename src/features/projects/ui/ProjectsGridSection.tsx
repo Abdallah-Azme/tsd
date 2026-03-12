@@ -18,7 +18,7 @@ export const ProjectsGridSection = () => {
       : projects.filter((p) => p.category === activeCategory);
 
   return (
-    <section className="py-24 bg-[#fafbfc]" dir={isRtl ? "rtl" : "ltr"}>
+    <section className="py-6 bg-[#fafbfc]" dir={isRtl ? "rtl" : "ltr"}>
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center text-center space-y-4 mb-4">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-100 border border-gray-200 shadow-sm">

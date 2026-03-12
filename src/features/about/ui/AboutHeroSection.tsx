@@ -3,7 +3,7 @@ import { AboutStats } from "./AboutStats";
 
 export const AboutHeroSection = () => {
   return (
-    <section className="py-24 container mx-auto px-4 overflow-hidden">
+    <section className="py-6 container mx-auto px-4 overflow-hidden">
       <SectionHeader
         badge="About us"
         title="We Build Software"
@@ -11,7 +11,7 @@ export const AboutHeroSection = () => {
         className="mb-12"
       />
 
-      <div className="flex flex-col md:flex-row gap-8 lg:gap-16 mb-16 text-[var(--sea-ink-soft)] text-lg leading-relaxed font-medium">
+      <div className="flex flex-col md:flex-row gap-8 lg:gap-16 mb-10 text-[var(--sea-ink-soft)] text-lg leading-relaxed font-medium">
         <p className="flex-1">
           We create intelligent software solutions that empower businesses to
           operate more efficiently, cut costs, and drive faster digital growth

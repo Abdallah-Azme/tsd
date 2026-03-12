@@ -65,24 +65,23 @@ export const StatItem = ({
     <div
       ref={containerRef}
       className={cn(
-        "flex flex-col gap-2 p-6 rounded-2xl transition-all duration-500 hover:bg-[var(--surface-strong)] group border border-transparent hover:border-[var(--line)]",
+        "flex flex-col items-center text-center gap-3 pt-8 border-t border-slate-200 transition-all duration-300",
         className,
       )}
     >
-      <p className="text-[10px] font-bold text-[var(--kicker)] uppercase tracking-[0.2em]">
+      <p className="text-lg font-bold text-slate-700 tracking-tight">
         {label}
       </p>
       <div className="flex items-baseline gap-1">
-        <span className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter text-[var(--sea-ink)] group-hover:text-[var(--lagoon-deep)] transition-colors">
+        <span className="text-5xl md:text-6xl font-black tracking-tight text-[#1E3A8A]">
           {prefix}
           {count}
           {suffix}
         </span>
       </div>
-      <p className="text-sm text-[var(--sea-ink-soft)] font-medium leading-tight">
+      <p className="text-sm text-slate-500 font-medium leading-relaxed max-w-[200px]">
         {description}
       </p>
-      <div className="h-1 w-8 bg-[var(--line)] group-hover:w-16 group-hover:bg-[var(--lagoon)] transition-all duration-700 rounded-full mt-3" />
     </div>
   );
 };

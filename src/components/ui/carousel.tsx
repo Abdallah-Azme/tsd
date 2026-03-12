@@ -197,8 +197,12 @@ function CarouselPrevious({
   className,
   variant = "outline",
   size = "icon-sm",
+  Icon,
+  children,
   ...props
-}: React.ComponentProps<typeof Button>) {
+}: React.ComponentProps<typeof Button> & {
+  Icon?: React.ComponentType<{ className?: string }>;
+}) {
   const { orientation, scrollPrev, canScrollPrev } = useCarousel();
   const direction = useDirection();
 
@@ -220,7 +224,14 @@ function CarouselPrevious({
       onClick={scrollPrev}
       {...props}
     >
-      {direction === "rtl" ? <MoveRight /> : <MoveLeft />}
+      {children ||
+        (Icon ? (
+          <Icon className={cn("h-4 w-4", className)} />
+        ) : direction === "rtl" ? (
+          <MoveRight />
+        ) : (
+          <MoveLeft />
+        ))}
       <span className="sr-only">Previous slide</span>
     </Button>
   );
@@ -230,8 +241,12 @@ function CarouselNext({
   className,
   variant = "outline",
   size = "icon-sm",
+  Icon,
+  children,
   ...props
-}: React.ComponentProps<typeof Button>) {
+}: React.ComponentProps<typeof Button> & {
+  Icon?: React.ComponentType<{ className?: string }>;
+}) {
   const { orientation, scrollNext, canScrollNext } = useCarousel();
   const direction = useDirection();
 
@@ -253,7 +268,14 @@ function CarouselNext({
       onClick={scrollNext}
       {...props}
     >
-      {direction === "rtl" ? <MoveLeft /> : <MoveRight />}
+      {children ||
+        (Icon ? (
+          <Icon className={cn("h-4 w-4", className)} />
+        ) : direction === "rtl" ? (
+          <MoveLeft />
+        ) : (
+          <MoveRight />
+        ))}
       <span className="sr-only">Next slide</span>
     </Button>
   );

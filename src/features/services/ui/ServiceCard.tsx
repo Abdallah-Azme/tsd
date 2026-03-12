@@ -13,64 +13,66 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
   return (
     <div
       className={cn(
-        "relative flex min-h-[400px] w-[350px] flex-col rounded-[2.5rem] p-10 transition-all duration-500 ease-in-out",
+        "relative flex flex-col transition-all duration-500 ease-in-out font-sans",
+        // Uniform Style across all screens
+        "rounded-[12px] p-5 gap-4 w-full",
+        // Height per breakpoint - using min-h or h to maintain consistency
+        "h-[200px] sm:h-[220px] md:h-[240px] 2xl:h-[273.7px]",
         isActive
-          ? "z-10 scale-105 bg-linear-to-br from-[#1E2024] to-[#121316] text-white shadow-2xl shadow-orange-500/10 border border-white/5"
+          ? [
+              "z-10 text-white border border-white/5 -rotate-2",
+              "bg-[url(/.jpg),linear-gradient(123.75deg,#E88100_-17.3%,#002347_92.4%)]",
+              "shadow-[0px_10px_30px_rgba(0,0,0,0.1)]",
+            ]
           : "bg-white border text-[#1A1A1A] border-[#E5EAF3] shadow-sm",
       )}
     >
       {/* Icon Housing */}
       <div
         className={cn(
-          "mb-8 flex h-16 w-16 items-center justify-center rounded-2xl transition-colors duration-500",
+          "flex items-center justify-center transition-all duration-500",
           isActive
             ? "bg-white/10 backdrop-blur-md border border-white/20"
             : "bg-gray-50 border border-gray-100",
+          "h-10 w-10 rounded-lg shrink-0",
         )}
       >
-        <span className="text-3xl">{service.icon}</span>
+        <span className="text-xl">{service.icon}</span>
       </div>
 
       {/* Content */}
-      <h3
-        className={cn(
-          "mb-4 text-2xl font-bold leading-tight",
-          isActive ? "text-white" : "text-[#1A1A1A]",
-        )}
-      >
-        {service.title}
-      </h3>
+      <div className="flex flex-col gap-1 min-w-0">
+        <h3
+          className={cn(
+            "text-lg sm:text-xl font-bold leading-tight transition-all duration-500 truncate",
+            isActive ? "text-white" : "text-[#1A1A1A]",
+          )}
+        >
+          {service.title}
+        </h3>
 
-      <p
-        className={cn(
-          "mb-8 text-base leading-relaxed opacity-80",
-          isActive ? "text-gray-100" : "text-[#5F6368]",
-        )}
-      >
-        {service.description}
-      </p>
+        <p
+          className={cn(
+            "text-xs sm:text-sm leading-relaxed opacity-80 transition-all duration-500 line-clamp-2 sm:line-clamp-3",
+            isActive ? "text-gray-100" : "text-[#5F6368]",
+          )}
+        >
+          {service.description}
+        </p>
+      </div>
 
       {/* Footer Link */}
       <div className="mt-auto">
         <button
           className={cn(
-            "text-base font-bold underline underline-offset-4 transition-colors",
-            isActive
-              ? "text-[#FF9D42] hover:text-white"
-              : "text-[#FF9D42] hover:text-[#E67E22]",
+            "text-xs font-bold underline underline-offset-4 transition-colors",
+            "text-[#FF9D42]",
+            isActive ? "hover:text-white" : "hover:text-[#E67E22]",
           )}
         >
           View More
         </button>
       </div>
-
-      {/* Subtle sparkle effect for active card */}
-      {isActive && (
-        <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-[2.5rem]">
-          <div className="absolute top-[-10%] right-[-10%] h-32 w-32 bg-white/5 blur-3xl rounded-full" />
-          <div className="absolute bottom-[-10%] left-[-10%] h-32 w-32 bg-orange-500/10 blur-3xl rounded-full" />
-        </div>
-      )}
     </div>
   );
 };

@@ -17,13 +17,13 @@ export const Services = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   return (
-    <section className="w-full bg-white py-24 px-6 overflow-hidden">
+    <section className="w-full bg-white py-6 px-6 overflow-hidden">
       <div className="container mx-auto px-4">
         <SectionHeader
           badge={t("badge")}
           title={t("title")}
           description={t("description")}
-          className="mb-16"
+          className="mb-10"
         />
       </div>
 
@@ -50,9 +50,12 @@ export const Services = () => {
           }}
           className="w-full"
         >
-          <CarouselContent className="py-10">
+          <CarouselContent className="py-6 -ml-4">
             {services.map((service, index) => (
-              <CarouselItem key={service.id} className="basis-auto pl-8">
+              <CarouselItem
+                key={service.id}
+                className="basis-[85%] sm:basis-[50%] md:basis-[40%] lg:basis-[35%] 2xl:basis-[34.48%] pl-8"
+              >
                 <ServiceCard
                   service={service}
                   isActive={index === selectedIndex % services.length}

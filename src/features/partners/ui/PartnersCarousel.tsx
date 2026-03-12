@@ -13,7 +13,7 @@ export function PartnersCarousel() {
   const displayPartners = [...partners, ...partners, ...partners];
 
   return (
-    <section className="w-full py-10 bg-white dark:bg-slate-950 border-y border-slate-100 dark:border-slate-800">
+    <section className="w-full py-10 pt-20  dark:bg-slate-950 border-y border-slate-100 dark:border-slate-800">
       <div className="container mx-auto">
         <Carousel
           opts={{

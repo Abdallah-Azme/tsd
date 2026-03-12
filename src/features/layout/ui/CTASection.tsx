@@ -7,7 +7,7 @@ export const CTASection = () => {
 
   return (
     <section
-      className="relative w-full py-24 overflow-hidden"
+      className="relative w-full py-6 overflow-hidden"
       dir={isRtl ? "rtl" : "ltr"}
     >
       {/* Background with Texture and Gradient */}

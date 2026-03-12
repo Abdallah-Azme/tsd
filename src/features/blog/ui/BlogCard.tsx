@@ -57,11 +57,11 @@ export const BlogCard: React.FC<BlogCardProps> = ({
         {/* Read More - visible on hover or if it has description (like the featured one in image) */}
         <div
           className={cn(
-            "mt-6 flex items-center gap-2 text-[#E77C00] font-semibold text-sm opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0",
+            "mt-6 flex items-center gap-2 text-[#B56500] font-semibold text-sm opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0",
             post.description && "opacity-100 translate-y-0", // Hardcoded for "pixel perfect" look of the one in image
           )}
         >
-          <span className="border-b-2 border-[#E77C00]">Read More</span>
+          <span className="border-b-2 border-[#B56500]">Read More</span>
         </div>
       </div>
     </div>

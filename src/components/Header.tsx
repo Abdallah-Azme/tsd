@@ -1,7 +1,9 @@
-import { Link } from '@tanstack/react-router'
-import ThemeToggle from './ThemeToggle'
+import { Link } from "@tanstack/react-router";
+import { Route } from "../routes/__root";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Header() {
+  const { lang } = Route.useSearch() as { lang: "en" | "ar" };
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[var(--header-bg)] px-4 backdrop-blur-lg">
       <nav className="page-wrap flex flex-wrap items-center gap-x-3 gap-y-2 py-3 sm:py-4">
@@ -51,35 +53,51 @@ export default function Header() {
         <div className="order-3 flex w-full flex-wrap items-center gap-x-4 gap-y-1 pb-1 text-sm font-semibold sm:order-2 sm:w-auto sm:flex-nowrap sm:pb-0">
           <Link
             to="/"
+            search={{ lang }}
+            activeOptions={{ exact: true, includeSearch: true }}
             className="nav-link"
-            activeProps={{ className: 'nav-link is-active' }}
           >
-            Home
+            {({ isActive }) => (
+              <span className={isActive ? "text-[#B56500]!" : "text-[#0F172A]!"}>
+                Home
+              </span>
+            )}
           </Link>
           <Link
             to="/blog"
+            search={{ lang }}
+            activeOptions={{ includeSearch: true }}
             className="nav-link"
-            activeProps={{ className: 'nav-link is-active' }}
           >
-            Blog
+            {({ isActive }) => (
+              <span className={isActive ? "text-[#B56500]!" : "text-[#0F172A]!"}>
+                Blog
+              </span>
+            )}
           </Link>
           <Link
             to="/about"
+            search={{ lang }}
+            activeOptions={{ includeSearch: true }}
             className="nav-link"
-            activeProps={{ className: 'nav-link is-active' }}
           >
-            About
+            {({ isActive }) => (
+              <span className={isActive ? "text-[#B56500]!" : "text-[#0F172A]!"}>
+                About
+              </span>
+            )}
           </Link>
           <a
             href="https://tanstack.com/start/latest/docs/framework/react/overview"
             className="nav-link"
             target="_blank"
             rel="noreferrer"
+            style={{ color: "#0F172A" }}
           >
             Docs
           </a>
         </div>
       </nav>
     </header>
-  )
+  );
 }

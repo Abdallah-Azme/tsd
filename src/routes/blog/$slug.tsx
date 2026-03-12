@@ -49,7 +49,7 @@ function BlogPost() {
 
   return (
     <main className="w-full flex-1">
-      <article className="container mx-auto px-4 py-12 md:py-20">
+      <article className="container mx-auto px-4 py-6 md:py-5">
         {/* Cover Image */}
         {post.heroImage ? (
           <img

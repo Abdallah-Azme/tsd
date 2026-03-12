@@ -13,7 +13,6 @@ function App() {
   return (
     <div className="flex flex-col items-center w-full">
       <Hero />
-      <PartnersCarousel />
       <AboutSection />
       <Services />
       <ProjectsCarousel />

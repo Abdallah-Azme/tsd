@@ -41,8 +41,8 @@ function RootComponent() {
             className="min-h-screen flex flex-col"
           >
             <Header />
-            <div className="pt-20">
-              {/* Adjust padding top to account for fixed header */}
+            <div className={location.pathname === "/" ? "" : "pt-20"}>
+              {/* Adjust padding top to account for fixed header except on home page where hero handles it */}
               <Outlet />
             </div>
             {!isContactPage && <CTASection />}

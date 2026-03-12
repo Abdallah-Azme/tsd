@@ -4,7 +4,7 @@ import { useTranslations } from "use-intl";
 export const ContactSection = () => {
   const t = useTranslations("Contact");
   return (
-    <section className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#F4F7FC] px-6 py-20 lg:py-32">
+    <section className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#F4F7FC] px-6 py-5 lg:py-32">
       {/* Background Grid */}
       <div
         className="absolute inset-0 z-0 opacity-50"

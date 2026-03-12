@@ -54,7 +54,7 @@ export const ProcessSection = () => {
 
   return (
     <section
-      className="py-24 container mx-auto px-4 overflow-hidden relative"
+      className="py-6 container mx-auto px-4 overflow-hidden relative"
       ref={containerRef}
     >
       {/* Background Gradients & Grid */}

@@ -37,7 +37,7 @@ const faqs = [
 
 export const FaqSection = () => {
   return (
-    <section className="py-24 px-6 lg:px-8 max-w-4xl mx-auto overflow-hidden">
+    <section className="py-6 px-6 lg:px-8 max-w-4xl mx-auto overflow-hidden">
       <SectionHeader
         badge="FAQ's"
         title="Answers That Help You"
