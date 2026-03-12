@@ -2,11 +2,18 @@ import { PartnersCarousel } from "#/features/partners/ui/PartnersCarousel";
 import { LucideSparkles } from "lucide-react";
 import { useTranslations } from "use-intl";
 import { GlassButton } from "#/components/ui/GlassButton";
+import { motion } from "framer-motion";
+import { 
+  containerVariants, 
+  fadeUpVariants, 
+  buttonVariants
+} from "#/lib/animations/variants";
 
 export const Hero = () => {
   const t = useTranslations("Hero");
+  
   return (
-    <section className="relative flex min-h-[700px] w-full flex-col items-center justify-center overflow-hidden bg-[#F8FBFF] px-6 py-5 text-center select-none">
+    <section className="relative flex min-h-[700px] w-full flex-col items-center justify-center overflow-hidden bg-[#F8FBFF] px-6 pt-32 pb-20 text-center select-none">
       {/* Grid Background */}
       <div
         className="absolute inset-0 z-0 opacity-[0.4]"
@@ -26,16 +33,29 @@ export const Hero = () => {
       <div className="pointer-events-none absolute right-1/4 bottom-1/4 h-64 w-64 rounded-full bg-orange-100/30 blur-[120px]" />
 
       {/* Top Badge */}
-      <div className="z-10 mb-8 flex items-center gap-2 rounded-full border border-white/20 bg-linear-to-r from-[#a6988c]/90 to-[#8c7b6d]/90 px-6 py-2.5 shadow-[0_8px_16px_rgba(0,0,0,0.1)] backdrop-blur-md transition-transform hover:scale-105 outline-none">
+      <motion.div 
+        initial="hidden"
+        animate="visible"
+        variants={fadeUpVariants}
+        className="z-10 mb-8 flex items-center gap-2 rounded-full border border-white/20 bg-linear-to-r from-[#a6988c]/90 to-[#8c7b6d]/90 px-6 py-2.5 shadow-[0_8px_16px_rgba(0,0,0,0.1)] backdrop-blur-md transition-transform hover:scale-105 outline-none"
+      >
         <div className="flex items-center gap-2 text-sm font-semibold leading-none text-white">
           <LucideSparkles className="h-4 w-4 text-white" />
           <span>{t("badge")}</span>
         </div>
-      </div>
+      </motion.div>
 
       {/* Hero Content */}
-      <div className="z-10 flex max-w-5xl flex-col items-center">
-        <h1 className="mb-8 text-5xl font-black tracking-tight sm:text-[80px] leading-[1.1]">
+      <motion.div 
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+        className="z-10 flex max-w-5xl flex-col items-center"
+      >
+        <motion.h1 
+          variants={fadeUpVariants}
+          className="mb-8 text-5xl font-black tracking-tight sm:text-[80px] leading-[1.1]"
+        >
           <span className="bg-linear-to-r from-[#FF8A00] to-[#8c8c8c] bg-clip-text text-transparent">
             {t("title1")}
           </span>{" "}
@@ -43,31 +63,51 @@ export const Hero = () => {
           <span className="bg-linear-to-r from-[#FF8A00] to-[#1E3A8A] bg-clip-text text-transparent">
             {t("title3")}
           </span>
-        </h1>
+        </motion.h1>
 
-        <p className="mb-12 max-w-2xl text-xl font-medium leading-relaxed text-[#5F6368]/80">
+        <motion.p 
+          variants={fadeUpVariants}
+          className="mb-12 max-w-2xl text-xl font-medium leading-relaxed text-[#5F6368]/80"
+        >
           {t("description")}
-        </p>
+        </motion.p>
 
-        <div className="flex flex-wrap items-center justify-center gap-6 mt-2 relative z-10">
-          <GlassButton variant="primary">{t("startProject")}</GlassButton>
-          <GlassButton variant="secondary">{t("exploreProjects")}</GlassButton>
-        </div>
-      </div>
+        <motion.div 
+          variants={containerVariants}
+          className="flex flex-wrap items-center justify-center gap-6 mt-2 relative z-10"
+        >
+          <motion.div variants={buttonVariants}>
+            <GlassButton variant="primary">{t("startProject")}</GlassButton>
+          </motion.div>
+          <motion.div variants={buttonVariants}>
+            <GlassButton variant="secondary">{t("exploreProjects")}</GlassButton>
+          </motion.div>
+        </motion.div>
+      </motion.div>
 
       {/* Floating Assets */}
 
       {/* Code Icon - Top Left */}
-      <div className="absolute left-[15%] top-[15%] z-20 hidden  animate-bounce-slow sm:block">
+      <motion.div 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5, duration: 1 }}
+        className="absolute left-[15%] top-[15%] z-20 hidden animate-bounce-slow sm:block"
+      >
         <img
           src="/home-page/code.png"
           alt="Code Icon"
           className="h-16 w-16 object-contain drop-shadow-xl mix-blend-multiply"
         />
-      </div>
+      </motion.div>
 
       {/* Robot - Bottom Left */}
-      <div className="absolute left-[5%] bottom-[20%] z-20 hidden items-end gap-2 sm:flex">
+      <motion.div 
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.8, duration: 1 }}
+        className="absolute left-[5%] bottom-[20%] z-20 hidden items-end gap-2 sm:flex"
+      >
         <div className="relative">
           <img
             src="/home-page/robot.png"
@@ -75,16 +115,21 @@ export const Hero = () => {
             className="h-48 w-48 object-contain animate-float mix-blend-multiply"
           />
         </div>
-      </div>
+      </motion.div>
 
       {/* Globe - Right Side */}
-      <div className="absolute right-[5%] top-1/2 z-20 hidden -translate-y-1/2 sm:block">
+      <motion.div 
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1, duration: 1.5, type: "spring" }}
+        className="absolute right-[5%] top-1/2 z-20 hidden -translate-y-1/2 sm:block"
+      >
         <img
           src="/home-page/earth.png"
           alt="Globe"
           className="h-[320px] w-[320px] object-contain drop-shadow-2xl animate-float mix-blend-multiply"
         />
-      </div>
+      </motion.div>
 
       <PartnersCarousel />
 
@@ -99,3 +144,4 @@ export const Hero = () => {
     </section>
   );
 };
+

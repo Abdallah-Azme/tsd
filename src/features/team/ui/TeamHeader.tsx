@@ -9,7 +9,7 @@ export const TeamHeader: React.FC = () => {
           Meet the Team
         </span>
       </div>
-      <h2 className="text-5xl font-extrabold text-[#111827]">
+      <h2 className="text-2xl md:text-5xl font-extrabold text-[#111827]">
         The People Behind TSD
       </h2>
       <p className="text-gray-500 text-lg max-w-2xl">

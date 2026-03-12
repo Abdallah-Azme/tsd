@@ -11,6 +11,13 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import AutoScroll from "embla-carousel-auto-scroll";
+import { motion } from "framer-motion";
+import { 
+  containerVariants, 
+  fadeUpVariants, 
+  cardVariants, 
+  viewportConfig 
+} from "#/lib/animations/variants";
 
 export const Services = () => {
   const t = useTranslations("Services");
@@ -18,16 +25,30 @@ export const Services = () => {
 
   return (
     <section className="w-full bg-white py-6 px-6 overflow-hidden">
-      <div className="container mx-auto px-4">
-        <SectionHeader
-          badge={t("badge")}
-          title={t("title")}
-          description={t("description")}
-          className="mb-10"
-        />
-      </div>
+      <motion.div 
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportConfig}
+        variants={containerVariants}
+        className="container mx-auto px-4"
+      >
+        <motion.div variants={fadeUpVariants}>
+          <SectionHeader
+            badge={t("badge")}
+            title={t("title")}
+            description={t("description")}
+            className="mb-10"
+          />
+        </motion.div>
+      </motion.div>
 
-      <div className="container mx-auto px-4 relative">
+      <motion.div 
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportConfig}
+        variants={containerVariants}
+        className="container mx-auto px-4 relative"
+      >
         <Carousel
           opts={{
             loop: true,
@@ -56,17 +77,20 @@ export const Services = () => {
                 key={service.id}
                 className="basis-[85%] sm:basis-[50%] md:basis-[40%] lg:basis-[35%] 2xl:basis-[34.48%] pl-8"
               >
-                <ServiceCard
-                  service={service}
-                  isActive={index === selectedIndex % services.length}
-                />
+                <motion.div variants={cardVariants}>
+                  <ServiceCard
+                    service={service}
+                    isActive={index === selectedIndex % services.length}
+                  />
+                </motion.div>
               </CarouselItem>
             ))}
           </CarouselContent>
           <CarouselPrevious />
           <CarouselNext />
         </Carousel>
-      </div>
+      </motion.div>
     </section>
   );
 };
+

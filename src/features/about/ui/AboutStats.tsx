@@ -1,4 +1,10 @@
 import { StatItem } from "./StatItem";
+import { motion } from "framer-motion";
+import {
+  containerVariants,
+  cardVariants,
+  viewportConfig,
+} from "#/lib/animations/variants";
 
 export const AboutStats = () => {
   const stats = [
@@ -30,10 +36,18 @@ export const AboutStats = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 py-16 ">
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={viewportConfig}
+      variants={containerVariants}
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 py-8"
+    >
       {stats.map((stat, index) => (
-        <StatItem key={index} {...stat} />
+        <motion.div key={index} variants={cardVariants}>
+          <StatItem {...stat} />
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
 };

@@ -1,13 +1,20 @@
 import { HelpCircle, ArrowUpRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { useCTA } from "../hooks/useCTA";
+import { motion } from "framer-motion";
+import { 
+  containerVariants, 
+  fadeUpVariants, 
+  buttonVariants, 
+  viewportConfig 
+} from "#/lib/animations/variants";
 
 export const CTASection = () => {
   const { lang, isRtl } = useCTA();
 
   return (
     <section
-      className="relative w-full py-6 overflow-hidden"
+      className="relative w-full py-12 overflow-hidden"
       dir={isRtl ? "rtl" : "ltr"}
     >
       {/* Background with Texture and Gradient */}
@@ -42,48 +49,59 @@ export const CTASection = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-8">
+      <motion.div 
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportConfig}
+        variants={containerVariants}
+        className="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-8"
+      >
         {/* Badge */}
-        <div className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/5 shadow-lg">
+        <motion.div variants={fadeUpVariants} className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/5 shadow-lg">
           <span className="text-sm font-medium text-white/80">
             Get In Touch
           </span>
-        </div>
+        </motion.div>
 
         {/* Title */}
-        <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
+        <motion.h2 variants={fadeUpVariants} className="text-4xl md:text-5xl font-bold text-white tracking-tight">
           Looking for Help?
-        </h2>
+        </motion.h2>
 
         {/* Subtitle */}
-        <p className="text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
+        <motion.p variants={fadeUpVariants} className="text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
           Have a question or need expert assistance? Our team is ready to guide
           you every step of the way.
-        </p>
+        </motion.p>
 
         {/* Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-4">
+        <motion.div variants={containerVariants} className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-4">
           {/* FAQs Button */}
-          <Link
-            to={"/faqs" as any}
-            search={{ lang } as any}
-            className="flex items-center gap-2 bg-white px-8 py-4 rounded-2xl shadow-xl hover:bg-gray-50 transition-all duration-300 group min-w-[180px] justify-center"
-          >
-            <span className="text-[#f18c22] font-bold text-lg">FAQs</span>
-            <HelpCircle className="w-5 h-5 text-[#f18c22] transition-transform group-hover:scale-110" />
-          </Link>
+          <motion.div variants={buttonVariants}>
+            <Link
+              to={"/faqs" as any}
+              search={{ lang } as any}
+              className="flex items-center gap-2 bg-white px-8 py-4 rounded-2xl shadow-xl hover:bg-gray-50 transition-all duration-300 group min-w-[180px] justify-center"
+            >
+              <span className="text-[#f18c22] font-bold text-lg">FAQs</span>
+              <HelpCircle className="w-5 h-5 text-[#f18c22] transition-transform group-hover:scale-110" />
+            </Link>
+          </motion.div>
 
           {/* Contact Us Button */}
-          <Link
-            to={"/contact" as any}
-            search={{ lang } as any}
-            className="flex items-center gap-2 bg-linear-to-r from-[#f18c22] to-[#ff9b44] px-8 py-4 rounded-2xl shadow-xl hover:shadow-[#f18c22]/20 hover:scale-[1.02] transition-all duration-300 group min-w-[180px] justify-center border border-white/10"
-          >
-            <span className="text-white font-bold text-lg">Contact Us</span>
-            <ArrowUpRight className="w-5 h-5 text-white transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </Link>
-        </div>
-      </div>
+          <motion.div variants={buttonVariants}>
+            <Link
+              to={"/contact" as any}
+              search={{ lang } as any}
+              className="flex items-center gap-2 bg-linear-to-r from-[#f18c22] to-[#ff9b44] px-8 py-4 rounded-2xl shadow-xl hover:shadow-[#f18c22]/20 hover:scale-[1.02] transition-all duration-300 group min-w-[180px] justify-center border border-white/10"
+            >
+              <span className="text-white font-bold text-lg">Contact Us</span>
+              <ArrowUpRight className="w-5 h-5 text-white transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
+          </motion.div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };
+

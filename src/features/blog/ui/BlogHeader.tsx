@@ -22,7 +22,9 @@ export const BlogHeader: React.FC<BlogHeaderProps> = ({
           {badgeText}
         </span>
       </div>
-      <h2 className="text-5xl font-extrabold text-[#111827]">{title}</h2>
+      <h2 className="text-2xl md:text-5xl font-extrabold text-[#111827]">
+        {title}
+      </h2>
       <p className="text-gray-500 text-lg max-w-2xl">{description}</p>
     </div>
   );

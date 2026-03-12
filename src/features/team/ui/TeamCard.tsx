@@ -12,7 +12,7 @@ export const TeamCard: React.FC<TeamCardProps> = ({ member }) => {
     <motion.div
       initial="initial"
       whileHover="hover"
-      className="relative w-full h-[450px] rounded-[32px] overflow-hidden cursor-pointer group bg-[#E2E8F0] shadow-sm hover:shadow-[0_20px_40px_-15px_rgba(181,101,0,0.3)] transition-shadow duration-500"
+      className="relative w-full h-[366px] rounded-[16px] border border-[#B4B4B4] overflow-hidden cursor-pointer group bg-[linear-gradient(123.75deg,#E88100_-17.3%,#002347_92.4%)] shadow-sm transition-all duration-500"
     >
       {/* Dynamic Background Gradient */}
       <motion.div
@@ -21,7 +21,7 @@ export const TeamCard: React.FC<TeamCardProps> = ({ member }) => {
           hover: { opacity: 1 },
         }}
         transition={{ duration: 1.5, ease: "easeInOut" }}
-        className="absolute inset-0 bg-gradient-to-br from-[#B56500] via-[#2F3E53] to-[#0F172A] overflow-hidden"
+        className="absolute inset-0 bg-[linear-gradient(123.75deg,#E88100_-17.3%,#002347_92.4%)] overflow-hidden"
       >
         {/* Noise Overlay */}
         <div 
@@ -48,7 +48,7 @@ export const TeamCard: React.FC<TeamCardProps> = ({ member }) => {
             height: "120px",
             top: "32px",
             right: "32px",
-            borderRadius: "24px",
+            borderRadius: "16px",
             scale: 1.05,
           },
         }}
@@ -71,11 +71,11 @@ export const TeamCard: React.FC<TeamCardProps> = ({ member }) => {
       </motion.div>
 
       {/* Content Container */}
-      <div className="absolute inset-0 p-8 z-20 flex flex-col">
+      <div className="absolute inset-0 p-[32px] z-20 flex flex-col">
         {/* Top Section (Moves up on hover) */}
         <motion.div
           variants={{
-            initial: { y: 320 },
+            initial: { y: 260 },
             hover: { y: 0 },
           }}
           transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
@@ -86,7 +86,7 @@ export const TeamCard: React.FC<TeamCardProps> = ({ member }) => {
               initial: { fontSize: "24px", color: "#FFFFFF" },
               hover: { fontSize: "24px", color: "#FFFFFF" },
             }}
-            className="font-bold tracking-tight"
+            className="font-bold tracking-tight text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
           >
             {member.name}
           </motion.h3>
@@ -95,7 +95,7 @@ export const TeamCard: React.FC<TeamCardProps> = ({ member }) => {
               initial: { fontSize: "14px", color: "#E2E8F0" },
               hover: { fontSize: "14px", color: "#FDBA74" },
             }}
-            className="font-medium"
+            className="font-medium text-slate-100 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]"
           >
             {member.role}
           </motion.p>
@@ -104,11 +104,11 @@ export const TeamCard: React.FC<TeamCardProps> = ({ member }) => {
         {/* Middle Section: Bio & Contacts (Fades in) */}
         <motion.div
           variants={{
-            initial: { opacity: 0, y: 20 },
-            hover: { opacity: 1, y: 0 },
+            initial: { opacity: 0, y: 20, height: 0, marginTop: 0 },
+            hover: { opacity: 1, y: 0, height: "auto", marginTop: 32 },
           }}
           transition={{ delay: 0.3, duration: 1.5 }}
-          className="mt-8 space-y-8 flex-1"
+          className="space-y-8 overflow-hidden"
         >
           <p className="text-gray-300 text-[15px] leading-relaxed max-w-[210px]">
             {member.bio}
@@ -123,11 +123,11 @@ export const TeamCard: React.FC<TeamCardProps> = ({ member }) => {
         {/* Bottom Section: Socials (Fades in) */}
         <motion.div
           variants={{
-            initial: { opacity: 0 },
-            hover: { opacity: 1 },
+            initial: { opacity: 0, height: 0 },
+            hover: { opacity: 1, height: "auto" },
           }}
           transition={{ delay: 0.6, duration: 1.5 }}
-          className="flex items-center gap-4 mt-auto"
+          className="flex items-center gap-4 overflow-hidden"
         >
           {member.socials.facebook && (
             <Facebook

@@ -11,6 +11,12 @@ import {
 import { TSDLogo } from "./TSDLogo";
 import { useFooter } from "../hooks/useFooter";
 import { useTranslations } from "use-intl";
+import { motion } from "framer-motion";
+import { 
+  containerVariants, 
+  fadeUpVariants, 
+  viewportConfig 
+} from "#/lib/animations/variants";
 
 const SocialIcon = ({ Icon, href, isSvg = false }: { Icon: any; href: string; isSvg?: boolean }) => (
   <a
@@ -61,9 +67,15 @@ export const Footer = () => {
     >
       <div className="container mx-auto px-4">
         {/* Main Content Area */}
-        <div className="flex flex-col md:flex-row items-start justify-between py-8 md:py-[32px] gap-[40px] md:gap-[181px] border-b border-[#929292C2]">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
+          variants={containerVariants}
+          className="flex flex-col md:flex-row items-start justify-between py-8 md:py-[32px] gap-[40px] md:gap-[181px] border-b border-[#929292C2]"
+        >
           {/* Column 1: Logo & Desc */}
-          <div className="flex flex-col gap-8 flex-1 max-w-[483px]">
+          <motion.div variants={fadeUpVariants} className="flex flex-col gap-8 flex-1 max-w-[483px]">
             <TSDLogo className="w-[146px] h-[78px] object-contain" />
             <p className="text-[#5B5B5B] text-sm leading-[150%] font-space">
               {t("description")}
@@ -75,67 +87,76 @@ export const Footer = () => {
               <SocialIcon Icon={<BehanceIcon />} href="#" isSvg />
               <SocialIcon Icon={Linkedin} href="#" />
             </div>
-          </div>
+          </motion.div>
 
-          {/* Column 2: Links */}
-          <div className="flex flex-col gap-6 min-w-[86px]">
-            <h3 className="text-gradient-footer font-inter font-semibold text-xl leading-[28px]">
-              {t("links")}
-            </h3>
-            <ul className="flex flex-col gap-4">
-              <FooterLink to="/" lang={lang}>
-                {nav("home")}
-              </FooterLink>
-              <FooterLink to="/about" lang={lang}>
-                {nav("about")}
-              </FooterLink>
-              <FooterLink to="/projects" lang={lang}>
-                {nav("projects")}
-              </FooterLink>
-              <FooterLink to="/blog" lang={lang}>
-                {nav("blog")}
-              </FooterLink>
-              <FooterLink to="/contact" lang={lang}>
-                {nav("contact")}
-              </FooterLink>
-            </ul>
-          </div>
+          {/* Links and Contact Us Group for small screens */}
+          <div className="flex flex-row flex-wrap md:flex-nowrap md:contents gap-x-12 gap-y-10">
+            {/* Column 2: Links */}
+            <motion.div variants={fadeUpVariants} className="flex flex-col gap-6 min-w-[120px]">
+              <h3 className="text-gradient-footer font-inter font-semibold text-xl leading-[28px]">
+                {t("links")}
+              </h3>
+              <ul className="flex flex-col gap-4">
+                <FooterLink to="/" lang={lang}>
+                  {nav("home")}
+                </FooterLink>
+                <FooterLink to="/about" lang={lang}>
+                  {nav("about")}
+                </FooterLink>
+                <FooterLink to="/projects" lang={lang}>
+                  {nav("projects")}
+                </FooterLink>
+                <FooterLink to="/blog" lang={lang}>
+                  {nav("blog")}
+                </FooterLink>
+                <FooterLink to="/contact" lang={lang}>
+                  {nav("contact")}
+                </FooterLink>
+              </ul>
+            </motion.div>
 
-          {/* Column 3: Contact Us */}
-          <div className="flex flex-col gap-4 flex-1 max-w-[276px]">
-            <h3 className="text-gradient-footer font-inter font-semibold text-xl leading-[28px]">
-              {t("contactUs")}
-            </h3>
-            <ul className="flex flex-col gap-6">
-              <li className="flex items-center gap-2 text-[#3D3D3D] text-base font-space">
-                <div className="w-5 h-5 flex items-center justify-center">
-                  <Phone size={20} className="text-[#002347]" />
-                </div>
-                <span>+20 100 123 4567</span>
-              </li>
-              <li className="flex items-center gap-2 text-[#3D3D3D] text-base font-space">
-                <div className="w-5 h-5 flex items-center justify-center">
-                  <Mail size={20} className="text-[#002347]" />
-                </div>
-                <a
-                  href="mailto:info@tsd.com"
-                  className="hover:text-[#B55612] transition-colors"
-                >
-                  info@tsd.com
-                </a>
-              </li>
-              <li className="flex items-center gap-2 text-[#3D3D3D] text-base font-space leading-[28px]">
-                <div className="w-5 h-5 flex items-center justify-center shrink-0">
-                  <MapPin size={20} className="text-[#002347]" />
-                </div>
-                <span>{t("address")}</span>
-              </li>
-            </ul>
+            {/* Column 3: Contact Us */}
+            <motion.div variants={fadeUpVariants} className="flex flex-col gap-4 flex-1 max-w-[276px]">
+              <h3 className="text-gradient-footer font-inter font-semibold text-xl leading-[28px]">
+                {t("contactUs")}
+              </h3>
+              <ul className="flex flex-col gap-6">
+                <li className="flex items-center gap-2 text-[#3D3D3D] text-base font-space">
+                  <div className="w-5 h-5 flex items-center justify-center">
+                    <Phone size={20} className="text-[#002347]" />
+                  </div>
+                  <span>+20 100 123 4567</span>
+                </li>
+                <li className="flex items-center gap-2 text-[#3D3D3D] text-base font-space">
+                  <div className="w-5 h-5 flex items-center justify-center">
+                    <Mail size={20} className="text-[#002347]" />
+                  </div>
+                  <a
+                    href="mailto:info@tsd.com"
+                    className="hover:text-[#B55612] transition-colors"
+                  >
+                    info@tsd.com
+                  </a>
+                </li>
+                <li className="flex items-center gap-2 text-[#3D3D3D] text-base font-space leading-[28px]">
+                  <div className="w-5 h-5 flex items-center justify-center shrink-0">
+                    <MapPin size={20} className="text-[#002347]" />
+                  </div>
+                  <span>{t("address")}</span>
+                </li>
+              </ul>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Bottom Bar */}
-        <div className="py-6 flex flex-col md:flex-row justify-between items-center gap-6">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
+          variants={fadeUpVariants}
+          className="py-6 flex flex-col md:flex-row justify-between items-center gap-6"
+        >
           <p className="text-[#8A9AAA] text-sm font-space flex items-center gap-1">
             <span>{currentYear}</span>
             <span className="text-[#002347] font-medium">{t("company")}</span>
@@ -156,8 +177,9 @@ export const Footer = () => {
               {t("privacy")}
             </a>
           </div>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );
 };
+

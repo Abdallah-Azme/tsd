@@ -13,6 +13,13 @@ import { useProjects } from "../hooks/useProjects";
 import { cn } from "#/lib/utils";
 import { useTranslations } from "use-intl";
 import { GlassButton } from "#/components/ui/GlassButton";
+import { motion } from "framer-motion";
+import { 
+  containerVariants, 
+  fadeUpVariants, 
+  cardVariants, 
+  viewportConfig 
+} from "#/lib/animations/variants";
 
 const ArrowIcon = ({
   direction,
@@ -34,7 +41,7 @@ const ArrowIcon = ({
       )}
     >
       <path
-        d="M1 6.36401C0.447715 6.36401 0 6.81173 0 7.36401C0 7.9163 0.447715 8.36401 1 8.36401V7.36401V6.36401ZM101.707 8.07112C102.098 7.6806 102.098 7.04743 101.707 6.65691L95.3431 0.292946C94.9526 -0.0975785 94.3195 -0.0975785 93.9289 0.292946C93.5384 0.68347 93.5384 1.31664 93.9289 1.70716L99.5858 7.36401L93.9289 13.0209C93.5384 13.4114 93.5384 14.0446 93.9289 14.4351C94.3195 14.8256 94.9526 14.8256 95.3431 14.4351L101.707 8.07112ZM1 7.36401V8.36401H101V7.36401V6.36401H1V7.36401Z"
+        d="M1 6.36401C0.447715 6.36401 0 6.81173 0 7.36401C0 7.9163 0.447715 8.36401 1 8.36401V7.36401V6.36401ZM101.707 8.07112C102.098 7.6806 102.098 7.04743 101.707 6.65691L95.3431 0.292946C94.9526 -0.0975785 94.3195 -0.0975785 93.9289 0.292946C93.5384 0.68347 93.5384 1.31664 93.9289 1.70716L99.5858 7.36401L93.9289 13.0209C93.5384 13.4114 93.5384 14.0446 93.9289 14.4351C94.3195 14.8256 94.9526 14.8256 95.3431 14.4351L101.707 8.07112ZM1 7.36401V8.36401H101V7.36401V6.36401H101V7.36401Z"
         fill={active ? "#FF8E00" : "#B8B8B8"}
       />
     </svg>
@@ -75,24 +82,40 @@ export const ProjectsCarousel = () => {
 
       <div className="relative z-10 container mx-auto px-4">
         {/* Header Section */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
-          <SectionHeader
-            badge={t("badge")}
-            title={t("title")}
-            description={t("description")}
-          />
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
+          variants={containerVariants}
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10"
+        >
+          <motion.div variants={fadeUpVariants}>
+            <SectionHeader
+              badge={t("badge")}
+              title={t("title")}
+              description={t("description")}
+            />
+          </motion.div>
 
-          <Link
-            to={"/" as any}
-            search={{ lang } as any}
-            className="text-[#f18c22] font-bold text-sm hover:underline underline-offset-4"
-          >
-            {t("viewMore")}
-          </Link>
-        </div>
+          <motion.div variants={fadeUpVariants}>
+            <Link
+              to={"/" as any}
+              search={{ lang } as any}
+              className="text-[#f18c22] font-bold text-sm hover:underline underline-offset-4"
+            >
+              {t("viewMore")}
+            </Link>
+          </motion.div>
+        </motion.div>
 
         {/* Carousel */}
-        <div className="relative">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
+          variants={containerVariants}
+          className="relative"
+        >
           <Carousel
             opts={{
               align: "start",
@@ -106,7 +129,8 @@ export const ProjectsCarousel = () => {
                   key={`${project.id}-${idx}`}
                   className="pl-6 basis-full md:basis-1/2 lg:basis-[480px]"
                 >
-                  <div
+                  <motion.div
+                    variants={cardVariants}
                     className={cn(
                       "group relative bg-white rounded-3xl overflow-hidden border transition-all duration-500",
                       project.featured
@@ -147,13 +171,13 @@ export const ProjectsCarousel = () => {
                         </a>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 </CarouselItem>
               ))}
             </CarouselContent>
 
             {/* Custom Carousel Controls at bottom right */}
-            <div className="flex items-center justify-end gap-10 mt-12 pr-4">
+            <motion.div variants={fadeUpVariants} className="flex items-center justify-end gap-10 mt-12 pr-4">
               <CarouselPrevious
                 variant="ghost"
                 className="static translate-y-0 h-auto w-auto p-0 hover:bg-transparent disabled:opacity-30 disabled:pointer-events-auto"
@@ -166,10 +190,11 @@ export const ProjectsCarousel = () => {
               >
                 <NextArrow />
               </CarouselNext>
-            </div>
+            </motion.div>
           </Carousel>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
 };
+

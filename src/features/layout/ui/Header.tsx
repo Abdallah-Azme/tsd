@@ -13,6 +13,7 @@ import {
 } from "#/components/ui/sheet";
 import { useEffect } from "react";
 import { cn } from "#/lib/utils";
+import { motion } from "framer-motion";
 
 const NavLink = ({
   to,
@@ -64,7 +65,10 @@ export const Header = () => {
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <header
+    <motion.header
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
       className={cn(
         "fixed top-0 left-0 right-0 z-50 h-20 transition-all duration-500 flex items-center",
         isScrolled
@@ -201,6 +205,7 @@ export const Header = () => {
           </Sheet>
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 };
+
